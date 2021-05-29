@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "Coordenada.h"
+#include "UtilidadesSYS.h"
 
 using namespace std;
 //cambiar pragma once por if load
