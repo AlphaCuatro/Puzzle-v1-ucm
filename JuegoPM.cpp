@@ -38,7 +38,7 @@ bool iniciar(tJuegoPM& jpm, string modo)
 }
 bool cargar1(tJuegoPM& jpm)
 {
-	tMatrizChar matriz;
+	//tMatrizChar matriz1;
 	jpm.archivo.open(jpm.nombreFichero);
 
 	if (!jpm.archivo.is_open())
@@ -52,10 +52,10 @@ bool cargar1(tJuegoPM& jpm)
 	{
 		for (int c = 0; c < jpm.matriz.numCols; c++)
 		{
-			matriz.elementos[f][c] = jpm.matriz[f][c];
+			matriz1.elementos[f][c] = jpm.matriz[f][c];
 		}
 	}
-	cargar(matriz, jpm.archivo);
+	cargar(jpm.matriz, jpm.archivo);
 }
 void mostrar(tJuegoPM const& jpm)
 {
@@ -136,34 +136,47 @@ void mostrar(tJuegoPM const& jpm)
 }
 bool jugar(tJuegoPM& jpm)
 {
-	int a, b;
-	string funcion;
+
 
 	if (jpm.numAccionesLimite > jpm.numAccionesRealizadas)
 	{
-		cout << "Comando: ";
-		cin >> funcion >> a >> b;
-
-		if (funcion == "SF") { swapF(jpm.matriz, a, b); }
-		else if (funcion == "SC") { swapC(jpm.matriz, a, b); }
-		else if (funcion == "SD") { swapD(jpm.matriz, a); }
-		else if (funcion == "VF") { voltearF(jpm.matriz, a); }
-		else if (funcion == "VC") { voltearC(jpm.matriz, a)}
-		else if (funcion == "VD") { voltearD(jpm.matriz, a)}
-		else if (funcion == "") {}
-		else if (funcion == "") {}
-		else if (funcion == "") {}
-		else if (funcion == "") {}
-		else if (funcion == "") {}
+		accion(jpm);
 	}
 	else if (jpm.numAccionesLimite = jpm.numAccionesRealizadas)
 	{
 		cout << "Te has quedado sin movimientos!" << endl;
 	}
+
 }
 void accion(tJuegoPM& jpm)
 {
-	
+	int a, b, c, d;
+	string funcion;
+
+	cout << "Comando: ";
+	cin >> funcion >> a >> b >> c >> d;
+
+	if (funcion == "SF") { swapF(jpm.matriz, a, b); }
+	else if (funcion == "SC") { swapC(jpm.matriz, a, b); }
+	else if (funcion == "SD") { swapD(jpm.matriz, a); }
+	else if (funcion == "VF") { voltearF(jpm.matriz, a); }
+	else if (funcion == "VC") { voltearC(jpm.matriz, a); }
+	else if (funcion == "VD") { voltearD(jpm.matriz, a); }
+	else if (funcion == "VV") { voltearV(jpm.matriz); }
+	else if (funcion == "VH") { voltearH(jpm.matriz); }
+	else if (funcion == "RD") { rotarD(jpm.matriz); }
+	else if (funcion == "SA")
+	{
+		tCoor e;
+		tCoor f;
+
+		e.x = a;
+		e.y = b;
+		f.x = c;
+		f.y = d;
+		swapAdy(jpm.matriz, e, f);
+	}
+	else if (funcion == "VD") { voltearD(jpm.matriz, a); }
 }
 
 //hacer un maincpp con llamada a mainjuegoPM

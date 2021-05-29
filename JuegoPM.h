@@ -31,6 +31,5 @@ void mostrar(tJuegoPM const& jpm);
 bool jugar(tJuegoPM& jpm);
 void accion(tJuegoPM& jpm);
 
-
 //unificar tMatriz
 typedef unsigned char tMatrizChar[DIM_MAX][DIM_MAX];
