@@ -1,12 +1,7 @@
 #include "JuegoPM.h"
 
-
-
-
-
 void mainJuegoPM() {
 	menu();
-
 }
 int menu()
 {
@@ -39,10 +34,9 @@ bool iniciar(tJuegoPM& jpm, string modo)
 	//Cambiar si sacamos el nombre del fichero de algún menú
 	cout << "Nombre del fichero que quieras cargar: ";
 	cin >> jpm.nombreFichero;
-	//
-	cargar(jpm);
+	cargar1(jpm);
 }
-bool cargar(tJuegoPM& jpm)
+bool cargar1(tJuegoPM& jpm)
 {
 	tMatrizChar matriz;
 	jpm.archivo.open(jpm.nombreFichero);
@@ -53,14 +47,22 @@ bool cargar(tJuegoPM& jpm)
 	}
 
 	// Modulo Matriz ----> cargar(tMatrizChar x, istream y) 
-	cargar(jpm.matriz, jpm.archivo);
+
+	for (int f = 0; f < jpm.matriz.numFilas; f++)
+	{
+		for (int c = 0; c < jpm.matriz.numCols; c++)
+		{
+			matriz.elementos[f][c] = jpm.matriz[f][c];
+		}
+	}
+	cargar(matriz, jpm.archivo);
 }
 void mostrar(tJuegoPM const& jpm)
 {
 	//MATRIZ
 	// Imprime y espacia los numeros indicativos de la fila sobre la matriz
 	cout << "   ";
-	for (int num = 0; num < jpm.numFilasMatriz; num++)
+	for (int num = 0; num < jpm.matriz.numFilas; num++)
 	{
 		if (num < 10)
 		{
@@ -73,10 +75,10 @@ void mostrar(tJuegoPM const& jpm)
 	}
 
 	// Imprime el numero de fila y la fila
-	for (int f = 0; f < jpm.numFilasMatriz; f++)
+	for (int f = 0; f < jpm.matriz.numFilas; f++)
 	{
 		
-		for (int c = 0; c < jpm.numColumnasMatriz; c++)
+		for (int c = 0; c < jpm.matriz.numCols; c++)
 		{
 			cout << " " << c << " ";
 			switch (jpm.matriz[f][c]) // negro(0), rojo(12), verde(10), azul(9), amarillo(14), magenta(13), cian2(3), blanco(15), gris(8), cian1(11) 
@@ -96,7 +98,7 @@ void mostrar(tJuegoPM const& jpm)
 	// MATRIZ OBJETIVO
 	// Imprime y espacia los numeros indicativos de la fila sobre la matriz
 	cout << "   ";
-	for (int num = 0; num < jpm.numFilasMatriz; num++)
+	for (int num = 0; num < jpm.matriz.numFilas; num++)
 	{
 		if (num < 10)
 		{
@@ -109,10 +111,10 @@ void mostrar(tJuegoPM const& jpm)
 	}
 
 	// Imprime el numero de fila y los colores en la fila
-	for (int f = 0; f < jpm.numFilasMatrizObjetivo; f++)
+	for (int f = 0; f < jpm.matrizObjetivo.numFilas; f++)
 	{
-
-		for (int c = 0; c < jpm.numColumnasMatrizObjetivo; c++)
+		
+		for (int c = 0; c < jpm.matrizObjetivo.numCols; c++)
 		{
 			cout << " " << c << " ";
 
@@ -144,10 +146,10 @@ bool jugar(tJuegoPM& jpm)
 
 		if (funcion == "SF") { swapF(jpm.matriz, a, b); }
 		else if (funcion == "SC") { swapC(jpm.matriz, a, b); }
-		else if (funcion == "SD") { swapD(jpm.matriz, a, b); }
-		else if (funcion == "VF") { voltearF(jpm.matriz, a, b); }
-		else if (funcion == "VC") {}
-		else if (funcion == "") {}
+		else if (funcion == "SD") { swapD(jpm.matriz, a); }
+		else if (funcion == "VF") { voltearF(jpm.matriz, a); }
+		else if (funcion == "VC") { voltearC(jpm.matriz, a)}
+		else if (funcion == "VD") { voltearD(jpm.matriz, a)}
 		else if (funcion == "") {}
 		else if (funcion == "") {}
 		else if (funcion == "") {}

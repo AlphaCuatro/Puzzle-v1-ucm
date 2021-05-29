@@ -14,12 +14,7 @@ const int DIM_MAX = 64;
 
 struct tJuegoPM
 {
-	int numFilasMatriz;
-	int numColumnasMatriz;
 	tMatrizChar matriz;
-
-	int numFilasMatrizObjetivo;
-	int numColumnasMatrizObjetivo;
 	tMatrizChar matrizObjetivo;
 
 	int numAccionesRealizadas;
@@ -31,7 +26,7 @@ struct tJuegoPM
 void mainJuegoPM();
 int menu();
 bool iniciar(tJuegoPM& jpm, string modo);
-bool cargar(tJuegoPM& jpm);
+bool cargar1(tJuegoPM& jpm);
 void mostrar(tJuegoPM const& jpm);
 bool jugar(tJuegoPM& jpm);
 void accion(tJuegoPM& jpm);

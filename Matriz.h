@@ -11,11 +11,12 @@ using namespace std;
 
 const int MAX_DIM = 10;
 
-typedef struct {
-	int numFilas, numCols;
-	//uint8
+struct tMatrizChar
+{
+	int numFilas;
+	int numCols;
 	uint8 elementos[MAX_DIM][MAX_DIM];
-} tMatrizChar;
+};
 
 bool swapF(tMatrizChar& matriz, int f1, int f2);
 bool swapC(tMatrizChar& matriz, int c1, int c2);
@@ -30,6 +31,6 @@ bool operator == (tMatrizChar const& mat1, tMatrizChar const& mat2);
 bool swap(tMatrizChar& matriz, tCoor pos1, tCoor pos2);
 bool voltearID(tMatrizChar& matriz);
 bool swapAdy(tMatrizChar& matriz, tCoor pos1, tCoor pos2);
-bool cargarMatriz(tMatrizChar& matriz, istream& ent);
+bool cargar(tMatrizChar& matriz, istream& ent);
 
 #endif
