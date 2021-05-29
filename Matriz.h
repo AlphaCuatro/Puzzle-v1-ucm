@@ -13,7 +13,7 @@ const int MAX_DIM = 10;
 typedef struct {
 	int numFilas, numCols;
 	//uint8
-	double elementos[MAX_DIM][MAX_DIM];
+	uint8 elementos[MAX_DIM][MAX_DIM];
 } tMatrizChar;
 
 bool swapF(tMatrizChar& matriz, int f1, int f2);
