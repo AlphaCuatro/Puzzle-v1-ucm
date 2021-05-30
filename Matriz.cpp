@@ -134,20 +134,26 @@ bool voltearD(tMatrizChar& matriz, int d) {
 }
 //cambiar entero por booleano con while
 bool operator == (tMatrizChar const& mat1, tMatrizChar const& mat2) {
-	int igual = 0;
+	bool igual = false;
 	if (mat1.numFilas != mat2.numFilas || mat1.numCols != mat2.numCols) {
 		return false;
 	}
 	else if (mat1.numFilas == mat2.numFilas && mat1.numCols == mat2.numCols) {
-		for (int f = 0; (f < mat1.numFilas) && (igual == 0); ++f)
-			for (int c = 0; c < mat1.numCols; ++c)
+		int f = 0;
+		int c = 0;
+		while ((f < mat1.numFilas) && (igual == false)) {
+			f++;
+			while (c < mat1.numCols) {
+				c++;
 				if (mat1.elementos[f][c] != mat2.elementos[f][c]) {
-					igual = 1;
+					igual = true;
 				}
-		if (igual == 1) {
+			}
+		}
+		if (igual == true) {
 			return false;
 		}
-		else if (igual == 0) {
+		else if (igual == false) {
 			return true;
 		}
 	}

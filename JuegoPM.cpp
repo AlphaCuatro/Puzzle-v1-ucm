@@ -258,4 +258,3 @@ void accion(tJuegoPM& jpm)
 	else { cout << "Acción no válida"; }
 }
 
-//hacer un maincpp con llamada a mainjuegoPM
