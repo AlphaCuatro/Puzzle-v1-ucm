@@ -2,10 +2,11 @@
 #define LISTAPUZZLES_H
 
 #include "Puzzle.h"
+#include <fstream>
 
 const int MAX_PUZZLES = 100;
 
-typedef tPuzzle* tListaPuzzles[MAX_PUZZLES];
+typedef tPuzzle tListaPuzzles[MAX_PUZZLES];
 typedef tListaPuzzles tPuzzlesReunidos[2];
 
 void inicializar(tPuzzlesReunidos& jr);

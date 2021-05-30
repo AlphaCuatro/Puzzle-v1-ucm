@@ -2,6 +2,7 @@
 #define PUZZLE_H
 
 #include <iostream>
+#include "Matriz.h"
 using namespace std;
 
 struct tPuzzle
@@ -10,8 +11,8 @@ struct tPuzzle
 	string nombreFichero;
 	int tipoPuzzle;
 	int numMaxMovs;
-	struct tMatriz;
-	struct tMatrizFinal;
+	tMatrizChar matriz;
+	tMatrizChar matrizFinal;
 };
 
 #endif

@@ -2,6 +2,10 @@
 
 int main()
 {
+	tPuzzlesReunidos a;
+	inicializar(a);
+	cargar(a);
+	/*
 	tJuegoPM jpm;
 	//MENU
 	switch (menu())
@@ -21,4 +25,5 @@ int main()
 	if (jpm.modo == 2) { jpm.nombreFichero.append("_2D.txt"); }
 	
 	mainJuegoPM(jpm);
+	*/
 }

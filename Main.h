@@ -3,6 +3,7 @@
 
 #include "JuegoPM.h"
 #include "JuegoPM.cpp"
+#include "listaPuzzles.h"
 #include <iostream>
 #include <iostream>
 #include <Windows.h>
