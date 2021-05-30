@@ -3,15 +3,21 @@
 void mainJuegoPM(tJuegoPM& jpm) {
 	
 	string modo;
+	bool fin = false;
 
 	if (jpm.modo == 1) { modo = "1"; }
 	if (jpm.modo == 2) { modo = "2"; }
 
 	iniciar(jpm, modo);
 	cargar1(jpm);
-	mostrar(jpm);
-	if (jugar(jpm) || jpm.matriz == jpm.matrizObjetivo) { accion(jpm); }
-	else { borrar(); menu(); }
+
+	while (jugar(jpm))
+	{
+			mostrar(jpm);
+			jugar(jpm);
+			accion(jpm);
+			jpm.numAccionesRealizadas++;
+	}
 }
 int menu()
 {
@@ -59,11 +65,36 @@ bool cargar1(tJuegoPM& jpm)
 
 	// Modulo Matriz ----> cargar(tMatrizChar x, istream y) 
 
-	cargar(jpm.matriz, jpm.archivo);
+	//cargar(jpm.matriz, jpm.archivo);
+
+	jpm.archivo >> jpm.matriz.numFilas >> jpm.matriz.numCols;
+
+	for (int f = 0; f < jpm.matriz.numFilas; f++)
+	{
+		for (int c = 0; c < jpm.matriz.numCols; c++)
+		{
+			jpm.archivo >> jpm.matriz.elementos[f][c];
+		}
+	}
+
+	jpm.archivo >> jpm.matrizObjetivo.numFilas >> jpm.matrizObjetivo.numCols;
+
+
+	for (int f = 0; f < jpm.matriz.numFilas; f++)
+	{
+		for (int c = 0; c < jpm.matriz.numCols; c++)
+		{
+			jpm.archivo >> jpm.matrizObjetivo.elementos[f][c];
+		}
+	}
+	jpm.archivo >> jpm.numAccionesLimite;
+
 	return true;
 }
 void mostrar(tJuegoPM const& jpm)
 {
+	borrar();
+	
 	//MATRIZ
 	// Imprime y espacia los numeros indicativos de la fila sobre la matriz
 	cout << "   ";
@@ -82,22 +113,24 @@ void mostrar(tJuegoPM const& jpm)
 	// Imprime el numero de fila y la fila
 	for (int f = 0; f < jpm.matriz.numFilas; f++)
 	{
-		colorCTA(15, 15);
+		colorCTA(7, 0);
 		cout << " " << f << " ";
 		for (int c = 0; c < jpm.matriz.numCols; c++)
 		{
-			// negro(0), rojo(12), verde(10), azul(9), amarillo(14), magenta(13), cian2(3), blanco(15), gris(8), cian1(11)
-			if (jpm.matriz.elementos[f][c] == 0) { colorCTA(0, 0); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 1) { colorCTA(12, 12); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 2) { colorCTA(10, 10); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 3) { colorCTA(9, 9); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 4) { colorCTA(14, 14); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 5) { colorCTA(13, 13); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 6) { colorCTA(3, 3); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 7) { colorCTA(15, 15); cout << "  "; }
-			if (jpm.matriz.elementos[f][c] == 8) { colorCTA(8, 8); cout << "  "; }
+
+			if (jpm.matriz.elementos[f][c] == '0') { colorCTA(0, 0); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '1') { colorCTA(1, 1); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '2') { colorCTA(2, 2); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '3') { colorCTA(3, 3); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '4') { colorCTA(4, 4); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '5') { colorCTA(5, 5); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '6') { colorCTA(6, 6); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '7') { colorCTA(7, 7); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '8') { colorCTA(8, 8); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == '9') { colorCTA(9, 9); cout << "  "; }
 		}
 		cout << endl;
+		colorCTA(7, 0);
 	}
 	
 	// MATRIZ OBJETIVO
@@ -114,50 +147,49 @@ void mostrar(tJuegoPM const& jpm)
 			cout << num;
 		}
 	}
-
+	cout << endl;
 	// Imprime el numero de fila y los colores en la fila
 	for (int f = 0; f < jpm.matrizObjetivo.numFilas; f++)
 	{
-		
+		cout << " " << f << " ";
 		for (int c = 0; c < jpm.matrizObjetivo.numCols; c++)
 		{
-			cout << " " << c << " ";
-
-			switch (jpm.matriz.elementos[f][c]) // negro(0), rojo(12), verde(10), azul(9), amarillo(14), magenta(13), cian2(3), blanco(15), gris(8), cian1(11) 
-			{
-			case 0: colorCTA(0, 0);	cout << "  "; break;
-			case 1: colorCTA(12, 12); cout << "  "; break;
-			case 2: colorCTA(10, 10); cout << "  "; break;
-			case 3: colorCTA(9, 9);	cout << "  "; break;
-			case 4: colorCTA(14, 14); cout << "  "; break;
-			case 5: colorCTA(13, 13); cout << "  "; break;
-			case 6: colorCTA(11, 11); cout << "  "; break;
-			case 7: colorCTA(15, 15); cout << "  "; break;
-			}
+			if (jpm.matrizObjetivo.elementos[f][c] == '0') { colorCTA(0, 0); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '1') { colorCTA(1, 1); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '2') { colorCTA(2, 2); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '3') { colorCTA(3, 3); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '4') { colorCTA(4, 4); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '5') { colorCTA(5, 5); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '6') { colorCTA(6, 6); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '7') { colorCTA(7, 7); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '8') { colorCTA(8, 8); cout << "  "; }
+			if (jpm.matrizObjetivo.elementos[f][c] == '9') { colorCTA(9, 9); cout << "  "; }
 		}
+		cout << endl;
+		colorCTA(7, 0);
 	}
+	cout << endl;
 	cout << "Te quedan " << jpm.numAccionesLimite - jpm.numAccionesRealizadas << " movimientos." << endl;
+	cout << endl;
 }
 bool jugar(tJuegoPM& jpm)
 {
-
-
-	if (jpm.numAccionesLimite > jpm.numAccionesRealizadas)
+	if (jpm.matriz == jpm.matrizObjetivo)
 	{
-		accion(jpm);
-		return true;
-	}
-	else if (jpm.numAccionesLimite = jpm.numAccionesRealizadas)
-	{
-		cout << "Te has quedado sin movimientos!" << endl;
+		cout << "Felicidades! Has ganado la partida!";
 		return false;
 	}
-
+	if (jpm.numAccionesLimite == jpm.numAccionesRealizadas)
+	{
+		cout << "Te has quedado sin movimientos! Intentalo de nuevo";
+		return false;
+	}
+	else return true;
 }
 void accion(tJuegoPM& jpm)
 {
 	int a, b, c, d;
-	std::string funcion;
+	string funcion;
 
 	cout << "Comando: ";
 	cin >> funcion >> a >> b >> c >> d;

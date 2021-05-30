@@ -231,8 +231,13 @@ bool cargar(tMatrizChar& matriz, istream& ent) {
 
 	ent >> matriz.numFilas >> matriz.numCols;
 
-	
-	
+		for (int f = 0; f < matriz.numFilas; f++)
+		{
+			for (int c = 0; c < matriz.numCols; c++)
+			{
+				ent >> matriz.elementos[f][c];
+			}
+		}
 		for (int f = 0; f < matriz.numFilas; f++)
 		{
 			for (int c = 0; c < matriz.numCols; c++)
@@ -241,5 +246,4 @@ bool cargar(tMatrizChar& matriz, istream& ent) {
 			}
 		}
 		return true;
-
 }
