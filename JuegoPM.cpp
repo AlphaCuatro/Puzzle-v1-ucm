@@ -192,24 +192,48 @@ void accion(tJuegoPM& jpm)
 	string funcion;
 
 	cout << "Comando: ";
-	cin >> funcion >> a >> b >> c >> d;
+	cin >> funcion;
 
 	if (jpm.modo == 1)
 	{
-		if (funcion == "SF") { swapF(jpm.matriz, a, b); }
-		else if (funcion == "SC") { swapC(jpm.matriz, a, b); }
-		else if (funcion == "SD") { swapD(jpm.matriz, a); }
-		else if (funcion == "VF") { voltearF(jpm.matriz, a); }
-		else if (funcion == "VC") { voltearC(jpm.matriz, a); }
-		else if (funcion == "VD") { voltearD(jpm.matriz, a); }
+		if (funcion == "SF") { 
+			cin >> a >> b;
+			swapF(jpm.matriz, a, b); 
+		}
+		else if (funcion == "SC") { 
+			cin >> a >> b;
+			swapC(jpm.matriz, a, b); 
+		}
+		else if (funcion == "SD") { 
+			cin >> a;
+			swapD(jpm.matriz, a); 
+		}
+		else if (funcion == "VF") { 
+			cin >> a;
+			voltearF(jpm.matriz, a); 
+		}
+		else if (funcion == "VC") { 
+			cin >> a;
+			voltearC(jpm.matriz, a); 
+		}
+		else if (funcion == "VD") {
+			cin >> a;
+			voltearD(jpm.matriz, a); 
+		}
 	}
 	else if (jpm.modo == 2)
 	{
-		if (funcion == "VV") { voltearV(jpm.matriz); }
-		else if (funcion == "VH") { voltearH(jpm.matriz); }
-		else if (funcion == "RD") { rotarD(jpm.matriz); }
-		else if (funcion == "SA")
-		{
+		if (funcion == "VV") { 
+			voltearV(jpm.matriz); 
+		}
+		else if (funcion == "VH") { 
+			voltearH(jpm.matriz); 
+		}
+		else if (funcion == "RD") { 
+			rotarD(jpm.matriz); 
+		}
+		else if (funcion == "SA"){
+			cin >> a >> b >> c >> d;
 			tCoor e;
 			tCoor f;
 
@@ -219,7 +243,10 @@ void accion(tJuegoPM& jpm)
 			f.y = d;
 			swapAdy(jpm.matriz, e, f);
 		}
-		else if (funcion == "VD") { voltearD(jpm.matriz, a); }
+		else if (funcion == "VD") { 
+			cin >> a;
+			voltearD(jpm.matriz, a); 
+		}
 	}
 	else { cout << "Acción no válida"; }
 }
