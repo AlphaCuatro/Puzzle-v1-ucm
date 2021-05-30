@@ -228,17 +228,18 @@ bool swapAdy(tMatrizChar& matriz, tCoor pos1, tCoor pos2) {
 	}
 }
 bool cargar(tMatrizChar& matriz, istream& ent) {
+
 	ent >> matriz.numFilas >> matriz.numCols;
-	bool ok = !ent.fail() && matriz.numFilas <= MAX_DIM && matriz.numCols >= 0;
-	int f = 0;
-	while (f < matriz.numFilas && ok) {
-		int c = 0;
-		while (c < matriz.numCols && ok) {
-			ent >> matriz.elementos[f][c];
-			if (ent.fail()) ok = false;
-			else ++c;
+
+	
+	
+		for (int f = 0; f < matriz.numFilas; f++)
+		{
+			for (int c = 0; c < matriz.numCols; c++)
+			{
+				ent >> matriz.elementos[f][c];
+			}
 		}
-		if (ok) ++f;
-	}
-	return ok;
+		return true;
+
 }

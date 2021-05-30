@@ -1,4 +1,3 @@
-//#pragma once
 #ifndef UTILIDADESYS_H
 #define UTILIDADESYS_H
 

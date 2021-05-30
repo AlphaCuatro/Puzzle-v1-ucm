@@ -1,9 +1,4 @@
 #include "Main.h"
-#include "JuegoPM.h"
-#include "JuegoPM.cpp"
-#include <iostream>
-
-using namespace std;
 
 int main()
 {
@@ -23,6 +18,6 @@ int main()
 
 	if (jpm.modo == 1) { jpm.nombreFichero.append("_1D.txt"); }
 	if (jpm.modo == 2) { jpm.nombreFichero.append("_2D.txt"); }
-
+	
 	mainJuegoPM(jpm);
 }

@@ -43,10 +43,6 @@ bool iniciar(tJuegoPM& jpm, std::string modo)
 {
 	std::string str;
 	jpm.numAccionesRealizadas = 0;
-	//Cambiar si sacamos el nombre del fichero de algún menú
-	cout << "Nombre del fichero que quieras cargar: ";
-
-	cin >> jpm.nombreFichero;
 	cargar1(jpm);
 	return true;
 	
@@ -77,32 +73,33 @@ void mostrar(tJuegoPM const& jpm)
 		{
 			cout << num << " ";
 		}
-		else if (num > 10)
+		else if (num >= 10)
 		{
 			cout << num;
 		}
 	}
-
+	cout << endl;
 	// Imprime el numero de fila y la fila
 	for (int f = 0; f < jpm.matriz.numFilas; f++)
 	{
-		
+		colorCTA(15, 15);
+		cout << " " << f << " ";
 		for (int c = 0; c < jpm.matriz.numCols; c++)
 		{
-			cout << " " << c << " ";
-			switch (jpm.matriz.elementos[f][c]) // negro(0), rojo(12), verde(10), azul(9), amarillo(14), magenta(13), cian2(3), blanco(15), gris(8), cian1(11) 
-			{
-			case 0: colorCTA(0, 0);	cout << "  "; break;
-			case 1: colorCTA(12, 12); cout << "  "; break;
-			case 2: colorCTA(10, 10); cout << "  "; break;
-			case 3: colorCTA(9, 9);	cout << "  "; break;
-			case 4: colorCTA(14, 14); cout << "  "; break;
-			case 5: colorCTA(13, 13); cout << "  "; break;
-			case 6: colorCTA(11, 11); cout << "  "; break;
-			case 7: colorCTA(15, 15); cout << "  "; break;
-			}
+			// negro(0), rojo(12), verde(10), azul(9), amarillo(14), magenta(13), cian2(3), blanco(15), gris(8), cian1(11)
+			if (jpm.matriz.elementos[f][c] == 0) { colorCTA(0, 0); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 1) { colorCTA(12, 12); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 2) { colorCTA(10, 10); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 3) { colorCTA(9, 9); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 4) { colorCTA(14, 14); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 5) { colorCTA(13, 13); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 6) { colorCTA(3, 3); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 7) { colorCTA(15, 15); cout << "  "; }
+			if (jpm.matriz.elementos[f][c] == 8) { colorCTA(8, 8); cout << "  "; }
 		}
+		cout << endl;
 	}
+	
 	// MATRIZ OBJETIVO
 	// Imprime y espacia los numeros indicativos de la fila sobre la matriz
 	cout << "   ";
@@ -112,7 +109,7 @@ void mostrar(tJuegoPM const& jpm)
 		{
 			cout << num << " ";
 		}
-		else if (num > 10)
+		else if (num >= 10)
 		{
 			cout << num;
 		}

@@ -1,8 +1,15 @@
-#pragma once
+#ifndef MAIN_H
+#define MAIN_H
 
-int numAcciones = 0;
-int filasMatrizInicial = 0;
-int columnasMatrizInicial = 0;
+#include "JuegoPM.h"
+#include "JuegoPM.cpp"
+#include <iostream>
+#include <iostream>
+#include <Windows.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
-int filasMatrizFinal = 0;
-int columnasMatrizFinal = 0;
+using namespace std;
+
+#endif
