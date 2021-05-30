@@ -7,6 +7,7 @@ void mainJuegoPM(tJuegoPM& jpm) {
 
 	if (jpm.modo == 1) { modo = "1"; }
 	if (jpm.modo == 2) { modo = "2"; }
+	if (jpm.modo == 3) {  }
 
 	iniciar(jpm, modo);
 	cargar1(jpm);
@@ -39,8 +40,11 @@ int menu()
 	case 2:
 		a = 2;
 		break;
-	default:
+	case 3:
 		a = 3;
+		break;
+	default:
+		a = 0;
 		break;
 	}
 	return a;

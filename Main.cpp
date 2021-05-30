@@ -8,7 +8,8 @@ int main()
 	{
 	case 1: jpm.modo = 1; break;
 	case 2: jpm.modo = 2; break;
-	case 3: return 0;
+	case 3: jpm.modo = 3; break;
+	case 4: return 0;
 	}
 	cout << "" << endl;
 	
