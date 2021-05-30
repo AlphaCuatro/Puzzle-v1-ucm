@@ -1,11 +1,17 @@
 #include "JuegoPM.h"
 
 void mainJuegoPM(tJuegoPM& jpm) {
-	iniciar(jpm, jpm.modo);
-	cargar(jpm);
+	
+	string modo;
+
+	if (jpm.modo == 1) { modo = "1"; }
+	if (jpm.modo == 2) { modo = "2"; }
+
+	iniciar(jpm, modo);
+	cargar1(jpm);
 	mostrar(jpm);
-	if (jugar(jpm)) { accion(jpm); }
-	else { menu(); }
+	if (jugar(jpm) || jpm.matriz == jpm.matrizObjetivo) { accion(jpm); }
+	else { borrar(); menu(); }
 }
 int menu()
 {

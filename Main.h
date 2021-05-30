@@ -6,4 +6,3 @@ int columnasMatrizInicial = 0;
 
 int filasMatrizFinal = 0;
 int columnasMatrizFinal = 0;
-
