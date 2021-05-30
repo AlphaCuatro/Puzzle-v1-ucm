@@ -190,7 +190,8 @@ bool swapAdy(tMatrizChar& matriz, tCoor pos1, tCoor pos2) {
 		pos2.x + 1 >= matriz.numCols || pos2.y + 1 >= matriz.numFilas) {
 		return false;
 	}
-	else {
+	else
+	{
 		//-1, -1
 		aux = matriz.elementos[pos1.y - 1][pos1.x - 1];
 		matriz.elementos[pos1.y - 1][pos1.x - 1] = matriz.elementos[pos2.y - 1][pos2.x - 1];

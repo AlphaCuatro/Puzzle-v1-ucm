@@ -3,10 +3,16 @@
 
 #include "Puzzle.h"
 #include <fstream>
+#include <string>
 
 const int MAX_PUZZLES = 100;
 
-typedef tPuzzle tListaPuzzles[MAX_PUZZLES];
+typedef tPuzzle* tPuzzlePtr;
+struct tListaPuzzles
+{
+	int cont;
+	tPuzzlePtr listas[MAX_PUZZLES];
+};
 typedef tListaPuzzles tPuzzlesReunidos[2];
 
 void inicializar(tPuzzlesReunidos& jr);

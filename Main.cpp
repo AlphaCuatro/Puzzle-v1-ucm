@@ -2,9 +2,10 @@
 
 int main()
 {
-	tPuzzlesReunidos a;
-	inicializar(a);
-	cargar(a);
+	tPuzzlesReunidos puzzlesReunidos;
+
+	cargar(puzzlesReunidos);
+
 	/*
 	tJuegoPM jpm;
 	//MENU
@@ -26,4 +27,5 @@ int main()
 	
 	mainJuegoPM(jpm);
 	*/
+	return 0;
 }
