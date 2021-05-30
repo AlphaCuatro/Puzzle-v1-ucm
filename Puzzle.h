@@ -1,9 +1,17 @@
 #ifndef PUZZLE_H
 #define PUZZLE_H
 
-struct tPuzzle {
+#include <iostream>
+using namespace std;
+
+struct tPuzzle
+{
 	string nombrePuzzle;
-	string 
+	string nombreFichero;
+	int tipoPuzzle;
+	int numMaxMovs;
+	struct tMatriz;
+	struct tMatrizFinal;
 };
 
 #endif

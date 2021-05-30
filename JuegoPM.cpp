@@ -180,12 +180,15 @@ bool jugar(tJuegoPM& jpm)
 {
 	if (jpm.matriz == jpm.matrizObjetivo)
 	{
+		borrar();
 		cout << "Felicidades! Has ganado la partida!";
 		return false;
 	}
 	if (jpm.numAccionesLimite == jpm.numAccionesRealizadas)
 	{
+		borrar();
 		cout << "Te has quedado sin movimientos! Intentalo de nuevo";
+		pausa();
 		return false;
 	}
 	else return true;
